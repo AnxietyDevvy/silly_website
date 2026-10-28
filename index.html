@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6c94a">
+    <title>The Duck Council</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #292719;
+        --paper: #fffdf4;
+        --yellow: #f6c94a;
+        --orange: #e77a43;
+        --green: #567b55;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 32px 18px;
+        display: grid;
+        place-items: center;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse at 12% 18%, #ffffff8a 0 2px, transparent 3px) 0 0 / 30px 30px,
+          #f6c94a;
+        font-family: "Trebuchet MS", "Arial Rounded MT Bold", sans-serif;
+      }
+
+      main {
+        width: min(100%, 620px);
+        padding: clamp(24px, 6vw, 52px);
+        border: 3px solid var(--ink);
+        border-radius: 28px;
+        background: var(--paper);
+        box-shadow: 9px 10px 0 var(--ink);
+        text-align: center;
+      }
+
+      .stamp {
+        display: inline-block;
+        padding: 7px 12px;
+        border: 2px solid var(--green);
+        border-radius: 999px;
+        color: var(--green);
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        transform: rotate(-3deg);
+      }
+
+      h1 {
+        margin: 18px 0 8px;
+        font-size: clamp(2.5rem, 9vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.07em;
+      }
+
+      .intro {
+        max-width: 390px;
+        margin: 16px auto 24px;
+        color: #5b5848;
+        font-size: 1.05rem;
+        line-height: 1.55;
+      }
+
+      .ducks {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 4px;
+        max-width: 410px;
+        margin: 12px 0 22px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .ducks img {
+        width: 33.333%;
+        height: clamp(110px, 26vw, 155px);
+        object-fit: contain;
+        filter: drop-shadow(0 5px 0 #e8dfc7);
+      }
+
+      .ducks img:first-child {
+        transform: rotate(-4deg);
+      }
+
+      .ducks img:last-child {
+        transform: rotate(4deg);
+      }
+
+      .question {
+        margin: 0 0 14px;
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .question input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 14px 16px;
+        border: 2px solid #d5cfba;
+        border-radius: 12px;
+        background: white;
+        color: var(--ink);
+        font: inherit;
+        font-weight: 500;
+        text-transform: none;
+      }
+
+      .question input:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--green);
+        outline-offset: 3px;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px 20px;
+        border: 3px solid var(--ink);
+        border-radius: 14px;
+        background: var(--orange);
+        color: white;
+        font: inherit;
+        font-size: 1.05rem;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 0 5px 0 var(--ink);
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 0 var(--ink);
+      }
+
+      button:active {
+        transform: translateY(3px);
+        box-shadow: 0 2px 0 var(--ink);
+      }
+
+      .verdict {
+        min-height: 120px;
+        margin-top: 26px;
+        padding: 18px;
+        display: grid;
+        align-content: center;
+        border-radius: 16px;
+        background: #f5efd9;
+      }
+
+      .verdict h2 {
+        margin: 0 0 8px;
+        font-size: 1.45rem;
+      }
+
+      .verdict p {
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .verdict[hidden] {
+        display: none;
+      }
+
+      footer {
+        margin-top: 22px;
+        color: #77715e;
+        font-size: 0.78rem;
+      }
+
+      .credit {
+        display: block;
+        margin-top: 8px;
+        color: #5b5848;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="stamp">EST. THIS MORNING</span>
+      <h1>The Duck<br>Council</h1>
+      <p class="intro">Big decisions? Tiny decisions? The ducks have gathered, and they have absolutely no qualifications.</p>
+      <div class="ducks" role="group" aria-label="The three members of the Duck Council">
+        <img src="sprites/sitting_duck.png" alt="A duck sitting quietly">
+        <img src="sprites/thinking_duck.png" alt="A duck thinking hard">
+        <img src="sprites/speaking_duck.png" alt="A duck ready to speak">
+      </div>
+
+      <form id="council-form">
+        <label class="question" for="question">
+          What needs deciding?
+          <input id="question" name="question" maxlength="120" placeholder="Should I have a snack?" autocomplete="off">
+        </label>
+        <button type="submit">Convene the council</button>
+      </form>
+
+      <section class="verdict" id="verdict" aria-live="polite" hidden>
+        <h2 id="verdict-title"></h2>
+        <p id="verdict-text"></p>
+      </section>
+
+      <footer>
+        All rulings are final until the next bread-related development.
+        <small class="credit">Made by Skye.</small>
+      </footer>
+    </main>
+
+    <script>
+      const rulings = [
+        ["The council has quacked.", "Yes. But do it with the confidence of a duck in a tiny hat."],
+        ["A motion has passed.", "No. The ducks have formed a union and demand one (1) crumb first."],
+        ["The pond is divided.", "Maybe. Flip a coin. If it lands on its edge, ask a frog."],
+        ["A surprise ruling!", "Absolutely. The council will not be taking questions at this time."],
+        ["The chair-duck has spoken.", "Wait five minutes, then decide again with a snack in hand."],
+        ["Emergency session!", "The answer is probably yes, but one duck would like to see your notes."]
+      ];
+
+      const form = document.querySelector("#council-form");
+      const input = document.querySelector("#question");
+      const verdict = document.querySelector("#verdict");
+      const title = document.querySelector("#verdict-title");
+      const text = document.querySelector("#verdict-text");
+      let previousRuling = -1;
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let nextRuling;
+        do {
+          nextRuling = Math.floor(Math.random() * rulings.length);
+        } while (rulings.length > 1 && nextRuling === previousRuling);
+        previousRuling = nextRuling;
+
+        title.textContent = rulings[nextRuling][0];
+        const question = input.value.trim();
+        text.textContent = question
+          ? `On the matter of “${question}”: ${rulings[nextRuling][1]}`
+          : rulings[nextRuling][1];
+        verdict.hidden = false;
+      });
+    </script>
+  </body>
+</html>
